@@ -49,7 +49,7 @@ def create_degree_sequence(n, sfunction=None, max_tries=50, **kwds):
     raise nx.NetworkXError("Exceeded max (%d) attempts at a valid sequence."%max_tries)
 
 
-class Person():
+class Individual():
     """ 
     Contains data about status of infection for each person.
     
