@@ -206,7 +206,8 @@ def network_model(beta, tau, nu, mu, init, num_steps, graph, doInit = False, dis
 
             # spreading of disease to neigbours
             if graph.node[i]["Data"].disease_status:
-                for neighbor in graph.neighbors(i):
+                NEIGHBOR = [n for n in graph.neighbors(i)]
+                for neighbor in NEIGHBOR:
                     if graph.node[neighbor]["Data"].disease_status == 0 and np.random.rand() < beta:
                         highest_disease = max(
                             graph.node[i]["Data"].disease_status,
