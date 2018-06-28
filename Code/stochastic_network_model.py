@@ -292,6 +292,7 @@ class System:
         self.number_of_res_symp = 0
         self.number_of_res_asymp = 0
         self.number_of_steady = 0
+        self.r0_infected = []
     
     def set_constants(self,
                       f = 0.2,
@@ -316,7 +317,8 @@ class System:
                       recovery_rate_symptomatic_women = 0.03,
                       screening_percentage = 0.02,
                       sexual_activity_high = 0.05,
-                      resistance_probability = 0.0001):
+                      resistance_probability = 0.0001,
+                      r0 = False):
         """
         Sets several parameters for the System-class
 
@@ -369,6 +371,7 @@ class System:
         self.screening_percentage = screening_percentage
         self.sexual_activity_high = sexual_activity_high
         self.resistance_probability = resistance_probability
+        self.r0 = r0
 
     
     def initialize(self):
@@ -557,6 +560,9 @@ class System:
             else:
                 resistant = False
 
+            if self.r0 and infected.identifier == 0:
+                self.r0_infected.append(non_infected.identifier)
+            
             if infected.gender == 0 and non_infected.gender == 1:
                 #male -> female
                 if partnership_type == 1:
